@@ -18,6 +18,7 @@ def get_navigation():
 
     return response.json()
 
+
 def get_tennis_navigation():
     full_navigation = get_navigation()
 
@@ -26,6 +27,7 @@ def get_tennis_navigation():
             return eventType
 
     return "No Tennis :("
+
 
 def get_tennis_event(event_id):
     market_catalogue = client.list_market_catalogue(
