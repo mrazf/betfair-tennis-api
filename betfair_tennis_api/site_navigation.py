@@ -14,6 +14,7 @@ def get_navigation():
         "Accept-Encoding": "gzip,deflate"
     }
 
+    print "logging a call to site navigation"
     response = requests.get(url, headers=headers)
 
     return response.json()

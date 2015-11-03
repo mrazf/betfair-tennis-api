@@ -12,7 +12,20 @@ def tennis_matches():
     tennis_nav = site_navigation.get_tennis_navigation()
     matches = flatten_matches(tennis_nav['children'])
 
-    return jsonify(matches=matches)
+    matchTypeQuery = request.args.get('matchType')
+    filtered_matches = filter(lambda x: filter_matches(x, matchTypeQuery), matches)
+
+    return jsonify(matches=filtered_matches)
+
+
+def filter_matches(match, matchType):
+    if matchType is None:
+        return True
+
+    if match['matchType'] == matchType:
+        return True
+
+    return False
 
 
 @app.route("/tennisMatches/<event_id>/")
@@ -42,10 +55,18 @@ def process_tournament(tournament_name, tournament_groups):
                     "tournamentName": tournament_name,
                     "name": child['name'],
                     "eventId": child['id'],
-                    "matchUrl": request.url_root + "tennisMatches/" + child['id']
+                    "matchUrl": request.url_root + "tennisMatches/" + child['id'],
+                    "matchType": determine_match_type(child['name'])
                 })
 
     return tournament_matches
+
+
+def determine_match_type(match_name):
+    if match_name.count('/') == 2:
+        return 'Doubles'
+
+    return 'Singles'
 
 
 def is_market(item):
