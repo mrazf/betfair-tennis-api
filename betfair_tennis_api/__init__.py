@@ -2,8 +2,6 @@ from flask import Flask
 from betfair import Betfair
 from betfair.utils import BetfairEncoder
 
-DEBUG = True
-
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_object(__name__)
 app.config.from_pyfile('config.py')
