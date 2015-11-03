@@ -41,7 +41,7 @@ def process_tournament(tournament_name, tournament_groups):
                     "tournamentName": tournament_name,
                     "name": child['name'],
                     "eventId": child['id'],
-                    "href": request.url_root + "tennisMatches/" + child['id']
+                    "matchUrl": request.url_root + "tennisMatches/" + child['id']
                 })
 
     return tournament_matches

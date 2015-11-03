@@ -6,7 +6,7 @@ def get_navigation():
     url = "https://api.betfair.com/exchange/betting/rest/v1/en/navigation/menu.json"
     headers = {
         "Accept": "application/json",
-        "X-Application": app.config['APPLICATION_KEY'],
+        "X-Application": app.config['BETFAIR_APPLICATION_KEY'],
         "X-Authentication": client.session_token,
         "Connection": "keep-alive",
         "Accept-Encoding": "gzip,deflate"
@@ -26,8 +26,8 @@ def get_tennis_navigation():
     return "No Tennis :("
 
 def get_tennis_event(event_id):
-    event_markets = client.list_market_catalogue(
+    market_catalogue = client.list_market_catalogue(
         MarketFilter(event_ids=[event_id])
     )
 
-    return event_markets
+    return market_catalogue
