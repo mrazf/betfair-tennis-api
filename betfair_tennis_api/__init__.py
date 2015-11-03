@@ -1,4 +1,5 @@
 from flask import Flask
+from flask.ext.cache import Cache
 from betfair import Betfair
 from betfair.utils import BetfairEncoder
 
@@ -9,5 +10,8 @@ app.json_encoder = BetfairEncoder
 
 client = Betfair(app.config['BETFAIR_APPLICATION_KEY'], './certs/betfair.pem')
 client.login(app.config['BETFAIR_USER_NAME'], app.config['BETFAIR_PASSWORD'])
+
+cache = Cache(config={'CACHE_TYPE': 'simple'})
+cache.init_app(app)
 
 import betfair_tennis_api.views

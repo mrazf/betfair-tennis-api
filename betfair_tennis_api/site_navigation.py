@@ -1,7 +1,9 @@
-from betfair_tennis_api import app, client
+from betfair_tennis_api import app, client, cache
 from betfair.models import MarketFilter
 import requests
 
+
+@cache.cached(timeout=3600, key_prefix='betfair_navigation')
 def get_navigation():
     url = "https://api.betfair.com/exchange/betting/rest/v1/en/navigation/menu.json"
     headers = {
