@@ -3,12 +3,12 @@ from betfair_tennis_api import app
 from dao import site_navigation
 
 
-@app.route("/tennisNavigation/")
+@app.route("/betfair-tennis-api/tennisNavigation/")
 def tennis_navigation():
     return jsonify(site_navigation.get_tennis_navigation())
 
 
-@app.route("/tennisMatches/")
+@app.route("/betfair-tennis-api/tennisMatches/")
 def tennis_matches():
     tennis_nav = site_navigation.get_tennis_navigation()
     matches = flatten_matches(tennis_nav['children'])
@@ -29,7 +29,7 @@ def filter_matches(match, matchType):
     return False
 
 
-@app.route("/tennisMatches/<event_id>/")
+@app.route("/betfair-tennis-api/tennisMatches/<event_id>/")
 def tennis_match(event_id):
     events = site_navigation.get_tennis_event(event_id)
 
