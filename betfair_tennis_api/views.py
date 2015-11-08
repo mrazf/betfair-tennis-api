@@ -1,5 +1,6 @@
 from flask import jsonify, request
-from betfair_tennis_api import app, site_navigation
+from betfair_tennis_api import app
+from dao import site_navigation
 
 
 @app.route("/tennisNavigation/")
