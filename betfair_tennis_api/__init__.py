@@ -15,3 +15,6 @@ cache = Cache(config={'CACHE_TYPE': 'simple'})
 cache.init_app(app)
 
 import betfair_tennis_api.views
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0')
