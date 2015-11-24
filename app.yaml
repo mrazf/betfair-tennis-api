@@ -7,3 +7,7 @@ threadsafe: yes
 handlers:
 - url: .*  # This regex directs all routes to main.app
   script: betfair_tennis_api.__init__.app
+
+libraries:
+- name: ssl
+  version: latest
