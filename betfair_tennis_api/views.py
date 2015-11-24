@@ -1,4 +1,4 @@
-from flask import jsonify, request
+from flask import jsonify
 from betfair_tennis_api import app
 from dao import site_navigation
 import matches
