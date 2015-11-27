@@ -60,7 +60,13 @@ target/
 
 # Flask
 instance/
+config/sandbox.py
 
 # This App
 certs/
 hello.py
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
