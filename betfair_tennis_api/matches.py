@@ -35,7 +35,7 @@ def process_tournament(tournament_name, tournament_groups):
                     "tournamentName": tournament_name,
                     "name": child['name'],
                     "eventId": child['id'],
-                    "matchUrl": request.url_root + "tennisMatches/" + child['id'],
+                    "matchUrl": request.url_root + "betfair-tennis-api/tennisMatches/" + child['id'],
                     "matchType": determine_match_type(child['name']),
                     "matchGender": matchGender
                 })
