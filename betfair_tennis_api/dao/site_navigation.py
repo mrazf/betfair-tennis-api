@@ -14,7 +14,7 @@ def get_navigation():
         "Accept-Encoding": "gzip,deflate"
     }
 
-    print "logging a call to site navigation"
+    app.logger.info("Request made to https://api.betfair.com/exchange/betting/rest/v1/en/navigation/menu.json")
     response = requests.get(url, headers=headers)
 
     return response.json()
