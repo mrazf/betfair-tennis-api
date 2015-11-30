@@ -1,5 +1,6 @@
 from flask import Flask
 from flask.ext.cache import Cache
+from flask.ext.cors import CORS
 from betfair import Betfair
 from betfair.utils import BetfairEncoder
 import os
@@ -20,6 +21,8 @@ client.login(app.config['BETFAIR_USER_NAME'], app.config['BETFAIR_PASSWORD'])
 
 cache = Cache(config={'CACHE_TYPE': 'simple'})
 cache.init_app(app)
+
+CORS(app, origins=['http://localhost:4200'])
 
 stream_handler = logging.StreamHandler()
 app.logger.addHandler(stream_handler)
