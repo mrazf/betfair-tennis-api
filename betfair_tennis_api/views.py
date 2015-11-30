@@ -11,7 +11,7 @@ def tennis_navigation():
 
 @app.route("/betfair-tennis-api/tennisMatches/")
 def tennis_matches():
-    return jsonify(matches=matches.get_tennis_matches())
+    return jsonify(tennisMatches=matches.get_tennis_matches())
 
 
 @app.route("/betfair-tennis-api/tennisMatches/<event_id>/")
