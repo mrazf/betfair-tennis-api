@@ -20,7 +20,7 @@ def pull_out_matches(elem, path, depth, paths):
             pull_out_matches(child, list(path), depth+1, paths)
 
             if path:
-               path.pop()
+                path.pop()
 
     return paths
 
