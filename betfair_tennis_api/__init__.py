@@ -28,7 +28,6 @@ stream_handler = logging.StreamHandler()
 app.logger.addHandler(stream_handler)
 
 import betfair_tennis_api.endpoints
-import betfair_tennis_api.views
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
