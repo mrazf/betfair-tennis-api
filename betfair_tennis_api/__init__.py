@@ -3,7 +3,6 @@ from flask.ext.cache import Cache
 from flask.ext.cors import CORS
 from betfair import Betfair
 from betfair.utils import BetfairEncoder
-import os
 import logging
 
 
