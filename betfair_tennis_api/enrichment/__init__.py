@@ -1,4 +1,4 @@
-from flask import jsonify
+from flask import jsonify, request
 from betfair_tennis_api import app
 from ..dao import site_navigation
 from .. import match_path
@@ -8,8 +8,34 @@ def tennisMatches():
     betfair_tennis_nav = site_navigation.get_tennis_navigation()
     raw_match_paths = match_path.get(betfair_tennis_nav)
     enriched_matches = enrich(raw_match_paths)
+    filtered_matches = filter_matches(enriched_matches)
 
-    return jsonify(tennisMatches=enriched_matches)
+    return jsonify(tennisMatches=filtered_matches)
+
+
+def filter_matches(matches):
+    singles = json_bool_conversion(request.args.get('singles'))
+    if singles:
+        matches = filter(lambda x: key_filter(x, 'singles', singles), matches)
+
+    mens = json_bool_conversion(request.args.get('mens'))
+    if mens:
+        matches = filter(lambda x: key_filter(x, 'mens', mens), matches)
+
+    return matches
+
+
+def key_filter(match, key, value):
+    if match[key] == value:
+        return True
+
+    return False
+
+
+def json_bool_conversion(string):
+    if string == "true":
+        return True
+    return False
 
 
 def enrich(raw_matches):
@@ -51,7 +77,7 @@ def is_mens(match):
     if is_mens_by_path(match['path'][:-1]):
         match['mens'] = True
         return match
-        
+
     match['mens'] = False
     return match
 
