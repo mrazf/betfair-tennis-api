@@ -10,7 +10,15 @@ def tennisMatches():
     enriched_matches = enrich(raw_match_paths)
     filtered_matches = filter_matches(enriched_matches)
 
-    return jsonify(tennisMatches=filtered_matches)
+    result = {
+        'tennisMatches': filtered_matches,
+        'metadata': {
+            'totalMatchesCount': len(raw_match_paths),
+            'filteredMatchesCount': len(filtered_matches)
+        }
+    }
+
+    return jsonify(result)
 
 
 def filter_matches(matches):
