@@ -28,6 +28,7 @@ app.logger.addHandler(stream_handler)
 
 import betfair_tennis_api.endpoints
 import enrichment
+import account
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')

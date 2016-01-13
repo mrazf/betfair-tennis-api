@@ -47,17 +47,23 @@ def json_bool_conversion(string):
 
 
 def enrich(raw_matches):
+    map(split_names, raw_matches)
     map(is_singles, raw_matches)
     map(is_mens, raw_matches)
 
     return raw_matches
 
 
-def is_singles(match):
-    if not is_singles_by_path(match['path'][:-1]):
-        match['singles'] = False
-        return match
+def split_names(match):
+    match_name = match['path'][-1]
+    match_players = match_name.split(' v ')
+    match['playerOne'] = match_players[0]
+    match['playerTwo'] = match_players[1]
 
+    return match
+
+
+def is_singles(match):
     if not is_singles_by_name(match['path'][-1]):
         match['singles'] = False
         return match
@@ -69,14 +75,6 @@ def is_singles(match):
 def is_singles_by_name(match_name):
     if match_name.count('/') == 2:
         return False
-
-    return True
-
-
-def is_singles_by_path(match):
-    for p in match:
-        if p == "Doubles Matches":
-            return False
 
     return True
 
