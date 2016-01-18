@@ -2,6 +2,7 @@ from flask import jsonify, request
 from betfair_tennis_api import app
 from ..dao import site_navigation
 from .. import match_path
+from ..player import utils
 
 @app.route('/api/tennisMatches')
 def tennisMatches():
@@ -57,11 +58,16 @@ def enrich(raw_matches):
 def split_names(match):
     match_name = match['path'][-1]
     match_players = match_name.split(' v ')
-    match['playerOne'] = match_players[0]
-    match['playerTwo'] = match_players[1]
+    match['playerOne'] = {
+        'name': match_players[0],
+        'url': utils.build_player_url(match_players[0])
+    }
+    match['playerTwo'] = {
+        'name': match_players[1],
+        'url': utils.build_player_url(match_players[1])
+    }
 
     return match
-
 
 def is_singles(match):
     if not is_singles_by_name(match['path'][-1]):
