@@ -4,6 +4,7 @@ from ..dao import site_navigation
 from .. import match_path
 from ..player import utils
 
+
 @app.route('/api/tennisMatches')
 def tennisMatches():
     betfair_tennis_nav = site_navigation.get_tennis_navigation()
@@ -68,6 +69,7 @@ def split_names(match):
     }
 
     return match
+
 
 def is_singles(match):
     if not is_singles_by_name(match['path'][-1]):
