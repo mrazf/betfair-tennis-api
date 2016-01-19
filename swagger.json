@@ -1,0 +1,95 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Betfair Tennis API",
+        "description": "RESTful wrapper around betfair api to enrich tennis data",
+        "version": "1.0.0"
+    },
+    "host": "mrazf.co.uk",
+    "schemes": [
+        "https"
+    ],
+    "basePath": "/api",
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/tennisMatches": {
+            "get": {
+                "summary": "Tennis Matches Available to Bet on",
+                "description": "Returns the available tennis matches to bet on with some enrichment\nfor gender and match type\n",
+                "parameters": [
+                    {
+                        "name": "singles",
+                        "in": "query",
+                        "description": "Whether the event is a singles match",
+                        "required": false,
+                        "type": "boolean"
+                    }
+                ],
+                "tags": [
+                    "Tennis Matches"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of tennis matches",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/TennisMatch"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "TennisMatch": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Betfair event id"
+                },
+                "mens": {
+                    "type": "boolean",
+                    "description": "Is the event a mens match"
+                },
+                "playerOne": {
+                    "type": "object",
+                    "description": "name and url for the first player"
+                },
+                "playerTwo": {
+                    "type": "object",
+                    "description": "name and url for the second player"
+                },
+                "singles": {
+                    "type": "boolean",
+                    "description": "Whether the event is singles match"
+                }
+            }
+        },
+        "Error": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "fields": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
