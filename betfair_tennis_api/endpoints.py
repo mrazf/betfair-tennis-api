@@ -9,6 +9,7 @@ import match_path
 with open('swagger.json', 'r') as f:
     schema = json_loads(f.read())
 
+
 @app.route("/betfair-tennis-api/tennisNavigation/")
 def tennis_navigation():
     return jsonify(site_navigation.get_tennis_navigation())
