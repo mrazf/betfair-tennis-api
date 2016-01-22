@@ -4,7 +4,6 @@ from flask.ext.cors import CORS
 from betfair import Betfair
 from betfair.utils import BetfairEncoder
 import logging
-from genderstore.gender_api import gender_bp
 from player.player_api import player_bp
 
 app = Flask(__name__)
@@ -29,7 +28,6 @@ app.logger.addHandler(stream_handler)
 
 import betfair_tennis_api.endpoints
 import enrichment
-app.register_blueprint(gender_bp)
 app.register_blueprint(player_bp)
 
 if __name__ == "__main__":

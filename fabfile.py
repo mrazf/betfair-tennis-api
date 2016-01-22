@@ -5,11 +5,12 @@ env.user = "stringer"
 env.key_filename = "~/.ssh/digital-ocean-stringer"
 
 def switch_to_virt_env():
-    local("source env/bin/activate")
+    run("virtualenv env")
+    run("source env/bin/activate")
 
 
 def pip_install():
-    local("pip install -r requirements.txt")
+    run("pip install -r requirements.txt")
 
 
 def deploy():
