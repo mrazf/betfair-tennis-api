@@ -1,8 +1,8 @@
 from fabric.api import *
 
-env.hosts = ["188.166.159.62"]
+env.hosts = ["46.101.87.122"]
 env.user = "stringer"
-env.key_filename = "~/.ssh/digital-ocean-stringer"
+env.key_filename = "~/.ssh/id_rsa.pub"
 
 def switch_to_virt_env():
     run("virtualenv env")
@@ -15,10 +15,11 @@ def pip_install():
 
 def deploy():
     code_dir = "~/betfair-tennis-api"
-    with settings(warn_only=True):
-        if run("test -d %s" % code_dir).failed:
-            run("git clone git@github.com:maxfar/betfair-tennis-api.git %s" % code_dir)
-    with cd(code_dir):
-        run("git pull")
-        switch_to_virt_env()
-        pip_install()
+    with cd("~"):
+        run("rm -rf betfair-tennis-api)
+        run("git clone git@github.com:maxfar/betfair-tennis-api.git")
+        with cd("code_dir"):
+            run("virtualenv env")
+            run("source env/bin/activate")
+            run("pip install -r requirements.txt")
+            run("sudo restart befair")
