@@ -3,7 +3,6 @@ from urllib import quote
 from urlparse import urlparse
 
 
-
 def build_player_url(player_id):
     parsed_url = urlparse(request.url_root)
 
