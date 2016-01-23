@@ -26,4 +26,4 @@ def deploy():
             run("which python")
             with source_virtualenv():
                 run("pip install -r requirements.txt")
-                run("sudo restart betfair")
+                sudo("sudo restart betfair")
