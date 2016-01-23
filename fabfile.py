@@ -16,7 +16,7 @@ def pip_install():
 def deploy():
     code_dir = "~/betfair-tennis-api"
     with cd("~"):
-        run("rm -rf betfair-tennis-api)
+        run("rm -rf betfair-tennis-api")
         run("git clone git@github.com:maxfar/betfair-tennis-api.git")
         with cd("code_dir"):
             run("virtualenv env")
