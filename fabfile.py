@@ -18,7 +18,7 @@ def deploy():
     with cd("~"):
         run("rm -rf betfair-tennis-api")
         run("git clone git@github.com:maxfar/betfair-tennis-api.git")
-        with cd("code_dir"):
+        with cd(code_dir):
             run("virtualenv env")
             run("source env/bin/activate")
             run("pip install -r requirements.txt")
