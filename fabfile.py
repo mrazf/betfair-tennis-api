@@ -5,7 +5,7 @@ from contextlib import contextmanager
 env.hosts = ["46.101.87.122"]
 env.user = "stringer"
 env.password = os.environ['STRINGER_PASSWORD']
-env.key_filename = "~/.ssh/id_rsa.pub"
+env.key_filename = "~/.ssh/id_rsa.pub"  
 
 @contextmanager
 def source_virtualenv():
@@ -22,7 +22,7 @@ def deploy():
             run("pwd")
             run("virtualenv env")
             run("source env/bin/activate")
-            run("ls")
+            run("ls ~/.ssh/")
             run("which python")
             with source_virtualenv():
                 run("pip install -r requirements.txt")
