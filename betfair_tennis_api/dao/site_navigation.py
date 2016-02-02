@@ -16,6 +16,10 @@ def get_navigation():
 
     app.logger.info("Request made to https://api.betfair.com/exchange/betting/rest/v1/en/navigation/menu.json")
     response = requests.get(url, headers=headers)
+    if "message" in response.json():
+        client.login()
+        headers["X-Authentication"] = client.session_token
+        response = requests.get(url, headers=headers)
 
     return response.json()
 
