@@ -18,10 +18,8 @@ class TestGettingNavigation(unittest.TestCase):
         app.config['TESTING'] = True
         self.app = app.test_client()
 
-        import site_navigation
-
     def test_root_navigation_request_failure_rebuilds_client(self):
-        print app.testing
+        print self.app.testing
         self.assertTrue(False)
 
 
