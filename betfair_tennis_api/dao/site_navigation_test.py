@@ -20,11 +20,13 @@ class TestGettingNavigation(unittest.TestCase):
         from betfair_tennis_api import app
 
         app.config['TESTING'] = True
+        app.config['BETFAIR_USER_NAME'] = 'usrnme'
+        app.config['BETFAIR_PASSWORD'] = 'psswrd'
         self.app = app.test_client()
 
     @httpretty.activate
     @patch.object(Betfair, 'login')
-    def test_root_navigation_request_failure_rebuilds_client(self, mock):
+    def test_navigation_request_failure_rebuilds_client(self, mock):
         from site_navigation import get_navigation
 
         httpretty.register_uri(
@@ -36,7 +38,10 @@ class TestGettingNavigation(unittest.TestCase):
         with self.app.application.app_context():
             get_navigation()
 
-        self.assertTrue(mock.called)
+        mock.assert_called_once_with('usrnme', 'psswrd')
+
+    def test_navigation_request_failure_retrys_with_new_session_token(self):
+        pass
 
 
 def loadStub(rel_path):

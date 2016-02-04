@@ -14,11 +14,11 @@ def get_navigation():
         "Accept-Encoding": "gzip,deflate"
     }
 
-    app.logger.info("Request made to https://api.betfair.com/exchange/betting/rest/v1/en/navigation/menu.json")
+    app.logger.info("Request made to:", url)
     response = requests.get(url, headers=headers)
-    print 'done made request: ', response.status_code, response.json()
+
     if "message" in response.json():
-        client.login()
+        client.login(app.config['BETFAIR_USER_NAME'], app.config['BETFAIR_PASSWORD'])
         headers["X-Authentication"] = client.session_token
         response = requests.get(url, headers=headers)
 

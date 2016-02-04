@@ -1,5 +1,21 @@
 def take_root(tennis_node):
-    return do(tennis_node, tennis_node['children'], [], [])
+    return do_list(tennis_node['children'], [], [])
+
+
+def do_list(elems, path, matches):
+    print path
+    for elem in elems:
+        path.append(elem['name'])
+
+        if is_match_odds(elem):
+            print 'unpopped', path
+            matches.append(build_match(elem, path))
+            path = []
+            break
+        elif 'children' in elem:
+            do_list(elem['children'], list(path), matches)
+
+    return matches
 
 
 def do(elem, children, path, matches):

@@ -3,6 +3,7 @@ import json
 import os
 import transform
 
+
 class TestTransform(unittest.TestCase):
 
     @classmethod
@@ -23,10 +24,9 @@ class TestTransform(unittest.TestCase):
     def test_transformed_item_has_correct_path(self):
         transformed_item = self.transformed[2]
 
-        self.assertEquals(transformed_item['path'][0], 'Tennis')
-        self.assertEquals(transformed_item['path'][1], 'Ecuador Open 2016')
-        self.assertEquals(transformed_item['path'][2], 'Doubles Matches')
-        self.assertEquals(transformed_item['path'][3], 'Maytin/Reyes-Varela v Krajicek/Monroe')
+        self.assertEquals(transformed_item['path'][0], 'Ecuador Open 2016')
+        self.assertEquals(transformed_item['path'][1], 'Doubles Matches')
+        self.assertEquals(transformed_item['path'][2], 'Maytin/Reyes-Varela v Krajicek/Monroe')
 
 
 def load_stub(rel_path):
