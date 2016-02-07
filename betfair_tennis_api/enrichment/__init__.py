@@ -1,7 +1,6 @@
 from flask import jsonify, request
 from betfair_tennis_api import app
 from ..dao import site_navigation
-from .. import match_path
 from ..player import utils
 
 
