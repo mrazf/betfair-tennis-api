@@ -9,17 +9,19 @@ class TestTransform(unittest.TestCase):
     @classmethod
     def setUpClass(self):
         stub = load_stub('./tennis_navigation.json')
-        self.transformed = transform.take_root(stub)
+        self.transformed = transform.process_root(stub)
 
     def test_transform_returns_correct_no_of_matches(self):
         size = len(self.transformed)
 
         self.assertEquals(size, 103)
 
-    def test_transformed_item_has_correct_id(self):
-        transformed_item = self.transformed[1]
+    def test_transformed_items_have_correct_ids(self):
+        from_tournament_one = self.transformed[1]
+        from_tournament_two = self.transformed[9]
 
-        self.assertEquals(transformed_item['id'], u'27676675')
+        self.assertEquals(from_tournament_one['id'], u'27676675')
+        self.assertEquals(from_tournament_two['id'], u'27677238')
 
     def test_transformed_item_has_correct_path(self):
         transformed_item = self.transformed[2]

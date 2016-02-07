@@ -1,31 +1,19 @@
-def take_root(tennis_node):
-    return do_list(tennis_node['children'], [], [])
+def process_root(tennis_node):
+    return process(tennis_node['children'], [], [])
 
 
-def do_list(elems, path, matches):
-    print path
+def process(elems, path, matches):
     for elem in elems:
         path.append(elem['name'])
 
-        if is_match_odds(elem):
-            print 'unpopped', path
-            matches.append(build_match(elem, path))
-            path = []
-            break
+        if is_event(elem) and has_match_odds(elem['children']):
+            matches.append(build_match(elem, list(path)))
+            path.pop()
+            continue
         elif 'children' in elem:
-            do_list(elem['children'], list(path), matches)
+            process(elem['children'], list(path), matches)
 
-    return matches
-
-
-def do(elem, children, path, matches):
-    path.append(elem['name'])
-
-    for child in children:
-        if is_match_odds(child):
-            matches.append(build_match(elem, path))
-        elif 'children' in child:
-            do(child, child['children'], list(path), matches)
+        path.pop()
 
     return matches
 
@@ -34,8 +22,17 @@ def build_match(raw_match, path):
     return dict([('id', raw_match['id']), ('path', path)])
 
 
-def is_match_odds(elem):
-    if 'marketType' in elem and elem['marketType'] == "MATCH_ODDS":
+def has_match_odds(children):
+    if children:
+        for child in children:
+            if 'marketType' in child and child['marketType'] == "MATCH_ODDS":
+                return True
+
+    return False
+
+
+def is_event(elem):
+    if 'type' in elem and elem['type'] == 'EVENT':
         return True
 
     return False
