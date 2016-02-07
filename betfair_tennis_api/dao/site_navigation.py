@@ -1,6 +1,7 @@
 from betfair_tennis_api import app, client, cache
 from betfair.models import MarketFilter
 import requests
+from transform import process_root
 
 
 @cache.cached(timeout=3600, key_prefix='betfair_navigation')
@@ -33,6 +34,12 @@ def get_tennis_navigation():
             return eventType
 
     return "No Tennis :("
+
+
+def get_raw_match_paths():
+    tennis_navigation = get_tennis_navigation()
+
+    return process_root(tennis_navigation)
 
 
 def get_tennis_event(event_id):

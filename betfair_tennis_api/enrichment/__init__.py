@@ -7,8 +7,7 @@ from ..player import utils
 
 @app.route('/api/tennisMatches')
 def tennisMatches():
-    betfair_tennis_nav = site_navigation.get_tennis_navigation()
-    raw_match_paths = match_path.get(betfair_tennis_nav)
+    raw_match_paths = site_navigation.get_raw_match_paths()
     enriched_matches = enrich(raw_match_paths)
     filtered_matches = filter_matches(enriched_matches)
 
