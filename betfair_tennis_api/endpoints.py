@@ -20,7 +20,7 @@ def tennis_navigation():
 
 @app.route("/api/rawMatchPaths")
 def raw_match_paths():
-    return jsonify(site_navigation.get_raw_match_paths())
+    return jsonify(tennisMatches=site_navigation.get_raw_match_paths())
 
 
 @app.route("/api/vista")
