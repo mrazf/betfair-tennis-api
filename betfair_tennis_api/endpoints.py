@@ -3,7 +3,6 @@ from flask import jsonify
 from betfair_tennis_api import app
 from dao import site_navigation
 
-
 with open('swagger.json', 'r') as f:
     schema = json_loads(f.read())
 

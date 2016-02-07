@@ -1,14 +1,14 @@
 import unittest
 import json
 import os
-import transform
+from .. import transform
 
 
 class TestTransform(unittest.TestCase):
 
     @classmethod
     def setUpClass(self):
-        stub = load_stub('./tennis_navigation.json')
+        stub = load_stub('stubs/tennis_navigation.json')
         self.transformed = transform.process_root(stub)
 
     def test_transform_returns_correct_no_of_matches(self):
