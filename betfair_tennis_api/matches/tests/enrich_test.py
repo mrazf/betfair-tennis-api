@@ -29,6 +29,7 @@ class TestEnrichment(unittest.TestCase):
         self.assertEquals(match_one['singles'], False)
         self.assertEquals(match_two['singles'], True)
 
+
 def load_stub(rel_path):
     abs_path = os.path.dirname(os.path.abspath(__file__)) + "/" + rel_path
     with open(abs_path, 'r') as f:
