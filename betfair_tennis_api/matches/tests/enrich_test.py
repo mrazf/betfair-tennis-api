@@ -17,6 +17,17 @@ class TestEnrichment(unittest.TestCase):
         self.assertEquals(player_one, 'Andujar/Carreno Busta')
         self.assertEquals(player_two, 'Cervantes/Lorenzi')
 
+    def test_enriched_match_has_correct_tournament(self):
+        tournament = self.enriched[0]['tournament']
+
+        self.assertEquals(tournament, "Argentina Open 2016")
+
+    def test_enriched_matches_have_correct_singles_status(self):
+        match_one = self.enriched[0]
+        match_two = self.enriched[7]
+
+        self.assertEquals(match_one['singles'], False)
+        self.assertEquals(match_two['singles'], True)
 
 def load_stub(rel_path):
     abs_path = os.path.dirname(os.path.abspath(__file__)) + "/" + rel_path
