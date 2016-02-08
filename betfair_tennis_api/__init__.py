@@ -27,8 +27,9 @@ stream_handler = logging.StreamHandler()
 app.logger.addHandler(stream_handler)
 
 import betfair_tennis_api.endpoints
-import enrichment
+from matches.api import api as matches_bp
 app.register_blueprint(player_bp)
+app.register_blueprint(matches_bp)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
