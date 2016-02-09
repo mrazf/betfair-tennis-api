@@ -30,6 +30,11 @@ class TestTransform(unittest.TestCase):
         self.assertEquals(transformed_item['path'][1], 'Doubles Matches')
         self.assertEquals(transformed_item['path'][2], 'Maytin/Reyes-Varela v Krajicek/Monroe')
 
+    def test_transformed_item_has_correct_time(self):
+        start_time = self.transformed[3]['startTime']
+
+        self.assertEquals(start_time, '2016-02-04T17:00:00.000Z')
+
 
 def load_stub(rel_path):
     abs_path = os.path.dirname(os.path.abspath(__file__)) + "/" + rel_path

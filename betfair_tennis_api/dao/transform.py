@@ -19,7 +19,17 @@ def process(elems, path, matches):
 
 
 def build_match(raw_match, path):
-    return dict([('id', raw_match['id']), ('path', path)])
+    return dict([
+        ('id', raw_match['id']),
+        ('path', path),
+        ('startTime', match_odds_start_time(raw_match['children']))
+    ])
+
+
+def match_odds_start_time(children):
+    for child in children:
+        if 'marketType' in child and child['marketType'] == "MATCH_ODDS":
+            return child['marketStartTime']
 
 
 def has_match_odds(children):
