@@ -29,6 +29,16 @@ class TestEnrichment(unittest.TestCase):
         self.assertEquals(match_one['singles'], False)
         self.assertEquals(match_two['singles'], True)
 
+    def test_enriched_matches_have_mens_true_if_in_path(self):
+        match = self.enriched[106]
+
+        self.assertEquals(match['mens'], True)
+
+    def test_enriched_matches_have_mens_false_if_women_in_path(self):
+        match = self.enriched[105]
+
+        self.assertFalse(match['mens'])
+
 
 def load_stub(rel_path):
     abs_path = os.path.dirname(os.path.abspath(__file__)) + "/" + rel_path
