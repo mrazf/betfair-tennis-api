@@ -35,6 +35,17 @@ class TestTransform(unittest.TestCase):
 
         self.assertEquals(start_time, '2016-02-04T17:00:00.000Z')
 
+    def test_transformed_item_has_correct_markets(self):
+        markets = self.transformed[0]['markets']
+
+        self.assertEquals(markets[0]['name'], 'Match Odds')
+        self.assertEquals(markets[0]['id'], '1.122834925')
+        self.assertEquals(markets[1]['name'], 'Set 1 Winner')
+        self.assertEquals(markets[1]['id'], '1.122834929')
+        self.assertEquals(markets[2]['name'], 'Set 2 Winner')
+        self.assertEquals(markets[2]['id'], '1.122834930')
+        self.assertEquals(markets[3]['name'], 'Set Betting')
+        self.assertEquals(markets[3]['id'], '1.122834926')
 
 def load_stub(rel_path):
     abs_path = os.path.dirname(os.path.abspath(__file__)) + "/" + rel_path

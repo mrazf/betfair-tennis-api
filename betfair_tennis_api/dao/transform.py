@@ -22,7 +22,8 @@ def build_match(raw_match, path):
     return dict([
         ('id', raw_match['id']),
         ('path', path),
-        ('startTime', match_odds_start_time(raw_match['children']))
+        ('startTime', match_odds_start_time(raw_match['children'])),
+        ('markets', top_level_markets(raw_match['children']))
     ])
 
 
@@ -30,6 +31,15 @@ def match_odds_start_time(children):
     for child in children:
         if 'marketType' in child and child['marketType'] == "MATCH_ODDS":
             return child['marketStartTime']
+
+
+def top_level_markets(children):
+    markets = []
+    for child in children:
+        if child['type'] == 'MARKET':
+            markets.append(child)
+
+    return markets
 
 
 def has_match_odds(children):
