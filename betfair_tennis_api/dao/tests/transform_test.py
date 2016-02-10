@@ -47,6 +47,7 @@ class TestTransform(unittest.TestCase):
         self.assertEquals(markets[3]['name'], 'Set Betting')
         self.assertEquals(markets[3]['id'], '1.122834926')
 
+
 def load_stub(rel_path):
     abs_path = os.path.dirname(os.path.abspath(__file__)) + "/" + rel_path
     with open(abs_path, 'r') as f:
