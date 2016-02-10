@@ -65,3 +65,4 @@ config/betfair.pem
 
 # This App
 rootkey.csv
+release.zip
