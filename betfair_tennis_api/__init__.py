@@ -11,10 +11,6 @@ app.config.from_object(__name__)
 app.config.from_envvar('APP_CONFIG_FILE')
 app.json_encoder = BetfairEncoder
 
-f = open('./config/betfair.pem', 'w+')
-f.write(app.config['PEM_FILE'])
-f.close()
-
 client = Betfair(app.config['BETFAIR_APPLICATION_KEY'], './config/betfair.pem')
 client.login(app.config['BETFAIR_USER_NAME'], app.config['BETFAIR_PASSWORD'])
 
