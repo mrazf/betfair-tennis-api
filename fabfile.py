@@ -15,11 +15,11 @@ def source_virtualenv():
 
 def deploy():
     code_dir = "~/betfair-tennis-api"
-    local("zip -r release.zip betfair-tennis-api -x=betfair-tennis-api/env/\*")
+    local("zip -r release.zip . -x=env/\* *.git* *.DS_STORE*")
     put("release.zip", "/home/stringer/")
     with cd("~"):
         run("rm -rf betfair-tennis-api")
-        run("unzip release.zip")
+        run("unzip release.zip -d betfair-tennis-api")
         with cd(code_dir):
             run("virtualenv env")
             run("source env/bin/activate")
