@@ -5,7 +5,7 @@ from contextlib import contextmanager
 env.hosts = ["46.101.87.122"]
 env.user = "stringer"
 env.password = os.environ['STRINGER_PASSWORD']
-env.key_filename = "~/.ssh/id_rsa.pub"  
+env.key_filename = "~/.ssh/id_rsa.pub"
 
 @contextmanager
 def source_virtualenv():
@@ -15,15 +15,15 @@ def source_virtualenv():
 
 def deploy():
     code_dir = "~/betfair-tennis-api"
+    local("zip -r release.zip betfair-tennis-api -x=betfair-tennis-api/env/\*")
+    put("release.zip", "/home/stringer/")
     with cd("~"):
         run("rm -rf betfair-tennis-api")
-        run("git clone git@github.com:maxfar/betfair-tennis-api.git")
+        run("unzip release.zip")
         with cd(code_dir):
-            run("pwd")
             run("virtualenv env")
             run("source env/bin/activate")
-            run("ls ~/.ssh/")
-            run("which python")
+            run("cp ~/betfair.pem ~/betfair-tennis-api/config/betfair.pem")
             with source_virtualenv():
                 run("pip install -r requirements.txt")
                 sudo("sudo restart betfair")
