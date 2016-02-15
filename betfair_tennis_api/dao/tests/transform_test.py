@@ -47,6 +47,15 @@ class TestTransform(unittest.TestCase):
         self.assertEquals(markets[3]['name'], 'Set Betting')
         self.assertEquals(markets[3]['id'], '1.122834926')
 
+    def test_transformed_item_has_correct_market_data(self):
+        market = self.transformed[0]['markets'][0]
+
+        self.assertEquals(len(market), 4)
+        self.assertTrue('exchangeId' in market)
+        self.assertTrue('id' in market)
+        self.assertTrue('marketType' in market)
+        self.assertTrue('name' in market)
+
 
 def load_stub(rel_path):
     abs_path = os.path.dirname(os.path.abspath(__file__)) + "/" + rel_path

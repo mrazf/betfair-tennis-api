@@ -1,3 +1,6 @@
+REQUIRED_MARKET_KEYS = ["id", "name", "marketType", "exchangeId"]
+
+
 def process_root(tennis_node):
     return process(tennis_node['children'], [], [])
 
@@ -37,7 +40,8 @@ def top_level_markets(children):
     markets = []
     for child in children:
         if child['type'] == 'MARKET':
-            markets.append(child)
+            market = {req_key: child[req_key] for req_key in REQUIRED_MARKET_KEYS}
+            markets.append(market)
 
     return markets
 
