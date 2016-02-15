@@ -15,7 +15,7 @@ def source_virtualenv():
 
 def deploy():
     code_dir = "~/betfair-tennis-api"
-    local("zip -r release.zip . -x=env/\* *.git* *.DS_STORE*")
+    local("zip -r release.zip . -x env/\* *.git* .DS_STORE \*.pyc")
     put("release.zip", "/home/stringer/")
     with cd("~"):
         run("rm -rf betfair-tennis-api")
@@ -26,4 +26,5 @@ def deploy():
             run("cp ~/betfair.pem ~/betfair-tennis-api/config/betfair.pem")
             with source_virtualenv():
                 run("pip install -r requirements.txt")
-                sudo("sudo restart betfair")
+                sudo("sudo stop betfair")
+                sudo("sudo start betfair")
