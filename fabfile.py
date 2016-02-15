@@ -21,7 +21,7 @@ def deploy():
         run("rm -rf betfair-tennis-api")
         run("unzip release.zip -d betfair-tennis-api")
         with cd(code_dir):
-            run("virtualenv env")
+            run("virtualenv env -p /usr/local/lib/python2.7.11/bin/python")
             run("source env/bin/activate")
             run("cp ~/betfair.pem ~/betfair-tennis-api/config/betfair.pem")
             with source_virtualenv():
