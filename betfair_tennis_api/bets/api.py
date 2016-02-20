@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify
 import dao
 
 api = Blueprint('bets_api', __name__, url_prefix='/api')

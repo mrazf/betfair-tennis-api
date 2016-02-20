@@ -1,6 +1,5 @@
-from betfair_tennis_api import app, client
+from betfair_tennis_api import client
 from betfair import constants
-import requests
 
 
 def get_bets():
