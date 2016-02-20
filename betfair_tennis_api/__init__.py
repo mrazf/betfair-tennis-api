@@ -24,8 +24,11 @@ app.logger.addHandler(stream_handler)
 
 import betfair_tennis_api.endpoints
 from matches.api import api as matches_bp
+from bets.api import api as bets_bp
 app.register_blueprint(player_bp)
 app.register_blueprint(matches_bp)
+app.register_blueprint(bets_bp)
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
