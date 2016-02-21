@@ -25,9 +25,11 @@ app.logger.addHandler(stream_handler)
 import betfair_tennis_api.endpoints
 from matches.api import api as matches_bp
 from bets.api import api as bets_bp
+from account.api import api as account_api
 app.register_blueprint(player_bp)
 app.register_blueprint(matches_bp)
 app.register_blueprint(bets_bp)
+app.register_blueprint(account_api)
 
 
 if __name__ == "__main__":
