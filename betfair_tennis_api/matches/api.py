@@ -15,7 +15,7 @@ def matches():
 
     result = {
         'matches': filtered_matches,
-        'metadata': {
+        'meta': {
             'matchCount': len(raw_match_paths),
             'filteredMatchCount': len(filtered_matches)
         }
