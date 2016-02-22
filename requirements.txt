@@ -1,5 +1,5 @@
 aniso8601==1.1.0
-betfair.py==0.2.2
+-e git://github.com/sipkom/betfair.py.git@89697f85bd1428b22a252f9f0197cc2bf8b001eb#egg=betfair.py
 boto3==1.2.2
 botocore==1.3.9
 cffi==1.4.2
