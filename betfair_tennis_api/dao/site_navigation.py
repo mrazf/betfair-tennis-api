@@ -15,7 +15,7 @@ def get_navigation():
         "Accept-Encoding": "gzip,deflate"
     }
 
-    app.logger.info("Request made to:", url)
+    app.logger.info("Request made to: {0}".format(url))
     response = requests.get(url, headers=headers)
 
     if "message" in response.json():
