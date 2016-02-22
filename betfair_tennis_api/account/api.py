@@ -22,11 +22,16 @@ def get_account():
 
 
 def get_tennis_profit(account_statement):
-    profit = 0.0
-    for statement in account_statement.account_statement:
-        item_data = json.loads(statement.item_class_data['unknownStatementItem'])
-
-        if item_data['eventTypeId'] is 2:
-            profit = profit + statement.amount
+    tennis_items = filter(is_tennis_item, account_statement.account_statement)
+    profit = reduce(lambda cumulative, item: cumulative + item.amount, tennis_items, 0.0)
 
     return profit
+
+
+def is_tennis_item(item):
+    item_data = json.loads(item.item_class_data['unknownStatementItem'])
+
+    if 'eventTypeId' in item_data and item_data['eventTypeId'] is 2:
+        return True
+
+    return False
