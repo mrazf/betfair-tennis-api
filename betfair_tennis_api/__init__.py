@@ -10,7 +10,7 @@ app.config.from_object(__name__)
 app.config.from_envvar('BETFAIR_API_CONFIG')
 app.json_encoder = BetfairEncoder
 
-client = Betfair(app.config['BETFAIR_APPLICATION_KEY'], './config/betfair.pem')
+client = Betfair(app.config['BETFAIR_APPLICATION_KEY'], app.config['BETFAIR_PEM_PATH'])
 client.login(app.config['BETFAIR_USER_NAME'], app.config['BETFAIR_PASSWORD'])
 
 cache = Cache(config={'CACHE_TYPE': 'simple'})
