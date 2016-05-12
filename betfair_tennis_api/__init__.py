@@ -7,7 +7,7 @@ import logging
 
 app = application = Flask(__name__)
 app.config.from_object(__name__)
-app.config.from_envvar('APP_CONFIG_FILE')
+app.config.from_envvar('BETFAIR_API_CONFIG')
 app.json_encoder = BetfairEncoder
 
 client = Betfair(app.config['BETFAIR_APPLICATION_KEY'], './config/betfair.pem')
