@@ -6,7 +6,7 @@ from betfair.utils import BetfairEncoder
 import logging
 from player.player_api import player_bp
 
-app = Flask(__name__)
+app = application = Flask(__name__)
 app.config.from_object(__name__)
 app.config.from_envvar('APP_CONFIG_FILE')
 app.json_encoder = BetfairEncoder
