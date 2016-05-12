@@ -22,10 +22,10 @@ stream_handler = logging.StreamHandler()
 app.logger.addHandler(stream_handler)
 
 import betfair_tennis_api.endpoints
-from player.player_api import player_bp
-from matches.api import api as matches_bp
-from bets.api import api as bets_bp
-from account.api import api as account_api
+from betfair_tennis_api.player.player_api import player_bp
+from betfair_tennis_api.matches.api import api as matches_bp
+from betfair_tennis_api.bets.api import api as bets_bp
+from betfair_tennis_api.account.api import api as account_api
 app.register_blueprint(player_bp)
 app.register_blueprint(matches_bp)
 app.register_blueprint(bets_bp)
