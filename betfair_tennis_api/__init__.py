@@ -4,7 +4,6 @@ from flask.ext.cors import CORS
 from betfair import Betfair
 from betfair.utils import BetfairEncoder
 import logging
-from player.player_api import player_bp
 
 app = application = Flask(__name__)
 app.config.from_object(__name__)
@@ -23,6 +22,7 @@ stream_handler = logging.StreamHandler()
 app.logger.addHandler(stream_handler)
 
 import betfair_tennis_api.endpoints
+from player.player_api import player_bp
 from matches.api import api as matches_bp
 from bets.api import api as bets_bp
 from account.api import api as account_api
