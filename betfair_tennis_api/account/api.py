@@ -4,7 +4,6 @@ import json
 from betfair_tennis_api import client
 
 api = Blueprint('account_api', __name__, url_prefix='/api')
-ACCOUNT_KEYS = ['available_to_bet_balance', 'exposure', 'wallet']
 
 
 @api.route("/account")

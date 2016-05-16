@@ -4,14 +4,13 @@ from flask.ext.cors import CORS
 from betfair import Betfair
 from betfair.utils import BetfairEncoder
 import logging
-from player.player_api import player_bp
 
-app = Flask(__name__)
+app = application = Flask(__name__)
 app.config.from_object(__name__)
-app.config.from_envvar('APP_CONFIG_FILE')
+app.config.from_envvar('BETFAIR_API_CONFIG')
 app.json_encoder = BetfairEncoder
 
-client = Betfair(app.config['BETFAIR_APPLICATION_KEY'], './config/betfair.pem')
+client = Betfair(app.config['BETFAIR_APPLICATION_KEY'], app.config['BETFAIR_PEM_PATH'])
 client.login(app.config['BETFAIR_USER_NAME'], app.config['BETFAIR_PASSWORD'])
 
 cache = Cache(config={'CACHE_TYPE': 'simple'})
@@ -23,9 +22,10 @@ stream_handler = logging.StreamHandler()
 app.logger.addHandler(stream_handler)
 
 import betfair_tennis_api.endpoints
-from matches.api import api as matches_bp
-from bets.api import api as bets_bp
-from account.api import api as account_api
+from betfair_tennis_api.player.player_api import player_bp
+from betfair_tennis_api.matches.api import api as matches_bp
+from betfair_tennis_api.bets.api import api as bets_bp
+from betfair_tennis_api.account.api import api as account_api
 app.register_blueprint(player_bp)
 app.register_blueprint(matches_bp)
 app.register_blueprint(bets_bp)
