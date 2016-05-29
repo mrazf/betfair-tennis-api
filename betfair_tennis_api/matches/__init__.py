@@ -3,7 +3,7 @@ from ..dao import site_navigation
 import enrich
 import prune_path
 
-matches_api = Blueprint('matches_api', __name__, url_prefix='/api')
+matches_api = Blueprint('matches_api', __name__)
 
 
 @matches_api.route('/matches')

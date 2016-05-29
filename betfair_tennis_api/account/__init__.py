@@ -3,7 +3,7 @@ from betfair import constants
 import json
 from betfair_tennis_api import client
 
-account_api = Blueprint('account_api', __name__, url_prefix='/api')
+account_api = Blueprint('account_api', __name__)
 
 
 @account_api.route("/account")
