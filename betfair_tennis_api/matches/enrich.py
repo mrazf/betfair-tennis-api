@@ -1,3 +1,5 @@
+from ..dao import orders
+
 mens_list = ['Men ', 'Men\'s', 'Mens']
 womens_list = ['Women ', 'Women\'s', 'Womens']
 
@@ -7,6 +9,9 @@ def do(raw_match_paths):
     map(add_tournament, raw_match_paths)
     map(add_singles, raw_match_paths)
     map(add_mens, raw_match_paths)
+
+    current_orders = orders.get_current_orders()
+    raw_match_paths = [add_placed_bet(raw_match, current_orders) for raw_match in raw_match_paths]
 
     return raw_match_paths
 
@@ -47,5 +52,17 @@ def add_mens(raw_match):
             break
         else:
             raw_match['mens'] = None
+
+    return raw_match
+
+
+def add_placed_bet(raw_match, current_orders):
+    markets = raw_match['markets']
+    placed_bets = [m for m in markets if m['id'] in current_orders]
+
+    if placed_bets:
+        raw_match['placedBet'] = True
+    else:
+        raw_match['placedBet'] = False
 
     return raw_match
